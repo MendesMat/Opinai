@@ -37,6 +37,10 @@ public class SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitO
         if (dto.Status.HasValue)
             entity.Status = dto.Status.Value;
 
+        entity.Questions = dto.Questions
+            .Select(q => _mapper.Map<Question>(q))
+            .ToList();
+
         _repository.Update(entity);
         await _unitOfWork.SaveChangesAsync();
 
