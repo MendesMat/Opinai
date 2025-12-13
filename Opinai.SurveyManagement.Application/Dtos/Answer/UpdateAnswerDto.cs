@@ -2,6 +2,5 @@
 
 public record UpdateAnswerDto
 (
-    string Text,
-    bool IsSelected
+    string Text
 );

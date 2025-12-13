@@ -5,5 +5,5 @@ public enum Status
     Draft,
     Published,
     Paused,
-    Closed
+    Finished
 }

@@ -10,7 +10,6 @@ public class AnswerProfile : Profile
     {
         CreateMap<CreateAnswerDto, Answer>();
         CreateMap<UpdateAnswerDto, Answer>();
-
         CreateMap<Answer, AnswerDto>();
     }
 }

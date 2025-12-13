@@ -3,5 +3,4 @@
 public class Answer(string text)
 {
     public string Text { get; set; } = text;
-    public bool IsSelected { get; set; } = false;
 }

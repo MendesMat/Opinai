@@ -2,6 +2,5 @@
 
 public record AnswerDto
 (
-    string Text,
-    bool IsSelected
+    string Text
 );

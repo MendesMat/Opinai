@@ -36,7 +36,6 @@ public class SurveyDbContext(DbContextOptions<SurveyDbContext> options)
                     a.HasKey("Id");
 
                     a.Property(x => x.Text).IsRequired();
-                    a.Property(x => x.IsSelected);
                 });
 
                 q.Navigation(x => x.Answers).AutoInclude();
