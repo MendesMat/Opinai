@@ -34,6 +34,9 @@ public class SurveyDbContext(DbContextOptions<SurveyDbContext> options)
                     a.ToTable("Answers");
                     a.WithOwner().HasForeignKey("SurveyId", "QuestionId");
 
+                    a.Property<int>("Id");
+                    a.HasKey("SurveyId", "QuestionId", "Id");
+
                     a.Property(a => a.Index).IsRequired();
                     a.Property(a => a.Text).IsRequired();
                 });
