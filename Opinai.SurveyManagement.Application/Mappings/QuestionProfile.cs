@@ -8,9 +8,6 @@ public class QuestionProfile : Profile
 {
     public QuestionProfile()
     {
-        CreateMap<CreateQuestionDto, Question>();
-        CreateMap<UpdateQuestionDto, Question>();
-
         CreateMap<Question, QuestionDto>()
             .ForMember(q => q.Answers, opt => opt
             .MapFrom(src => src.Answers));

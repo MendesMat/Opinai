@@ -45,4 +45,3 @@ public class Survey : IEntity
             yield return question.WithIndex(questionIndex++);
     }
 }
-

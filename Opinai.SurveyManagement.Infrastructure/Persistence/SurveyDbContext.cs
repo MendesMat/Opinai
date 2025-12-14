@@ -15,26 +15,33 @@ public class SurveyDbContext(DbContextOptions<SurveyDbContext> options)
             s.ToTable("Surveys");
             s.HasKey(s => s.Id);
 
+            s.Property(s => s.Title).IsRequired();
+            s.Property(s => s.Description).IsRequired();
+
             s.OwnsMany(s => s.Questions, q =>
             {
                 q.ToTable("Questions");
                 q.WithOwner().HasForeignKey("SurveyId");
 
-                q.Property(x => x.Title).IsRequired();
+                q.Property<int>("Id");
+                q.HasKey("SurveyId", "Id");
 
-                q.OwnsMany(x => x.Answers, a =>
+                q.Property(q => q.Index).IsRequired();
+                q.Property(q => q.Title).IsRequired();
+
+                q.OwnsMany(q => q.Answers, a =>
                 {
                     a.ToTable("Answers");
-                    a.WithOwner().HasForeignKey("QuestionId");
+                    a.WithOwner().HasForeignKey("SurveyId", "QuestionId");
 
-                    a.Property(x => x.Text).IsRequired();
+                    a.Property(a => a.Index).IsRequired();
+                    a.Property(a => a.Text).IsRequired();
                 });
 
-                q.Navigation(x => x.Answers).AutoInclude();
+                q.Navigation(q => q.Answers).AutoInclude();
             });
 
             s.Navigation(s => s.Questions).AutoInclude();
         });
     }
-
 }

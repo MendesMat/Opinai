@@ -2,12 +2,13 @@
 
 public class Answer
 {
-    public int Index { get; }
-    public string Text { get; }
+    public int Index { get; private set; } = -1;
+    public string Text { get; } = string.Empty;
+
+    public Answer() { }
 
     public Answer(string text)
     {
-        Index = -1;
         Text = text;
     }
 
