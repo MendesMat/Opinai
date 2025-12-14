@@ -9,28 +9,57 @@ using Opinai.SurveyManagement.Domain.Entities;
 namespace Opinai.SurveyManagement.Application.Services;
 
 public class SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitOfWork, IMapper mapper)
-    : CrudServiceBase<Survey, SurveyDto, CreateSurveyDto, UpdateSurveyDto>(repository, unitOfWork, mapper),
+    : QueryServiceBase<Survey, SurveyDto>(repository, unitOfWork, mapper),
     ISurveyService
 {
-    public override async Task<bool> UpdateAsync(Guid id, UpdateSurveyDto dto)
+    public async Task<Guid> CreateAsync(CreateSurveyDto dto)
+    {
+        var entity = new Survey(dto.Title, dto.Description);
+
+        var questions = dto.Questions.Select(question => 
+            new Question(
+                question.Title, 
+                question.Answers.Select(answer 
+                    => new Answer(answer.Text))
+            )
+        );
+
+        entity.ReplaceQuestions(questions);
+
+        await _repository.AddAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
+
+        return entity.Id;
+    }
+
+    public async Task<bool> UpdateAsync(Guid id, UpdateSurveyDto dto)
     {
         var entity = await _repository.GetByIdForUpdateAsync(id);
         if (entity is null) return false;
 
-        if (!string.IsNullOrWhiteSpace(dto.Title))
-            entity.Title = dto.Title;
+        entity.UpdateMetadata(dto.Title, dto.Description, dto.Status);
 
-        if (!string.IsNullOrWhiteSpace(dto.Description))
-            entity.Description = dto.Description;
+        var questions = dto.Questions.Select(question => 
+            new Question(
+                question.Title, 
+                question.Answers.Select(answer 
+                    => new Answer(answer.Text))
+            )
+        );
 
-        if (dto.Status.HasValue)
-            entity.Status = dto.Status.Value;
+        entity.ReplaceQuestions(questions);
 
-        entity.Questions = dto.Questions
-            .Select(q => _mapper.Map<Question>(q))
-            .ToList();
+        await _unitOfWork.SaveChangesAsync();
 
-        _repository.Update(entity);
+        return true;
+    }
+
+    public async Task<bool> DeleteAsync(Guid id)
+    {
+        var entity = await _repository.GetByIdAsync(id);
+        if (entity is null) return false;
+
+        _repository.Delete(entity);
         await _unitOfWork.SaveChangesAsync();
 
         return true;

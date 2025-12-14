@@ -8,5 +8,5 @@ public record UpdateSurveyDto
     string? Title,
     string? Description,
     Status? Status,
-    List<UpdateQuestionDto> Questions
+    List<QuestionDto> Questions
 );

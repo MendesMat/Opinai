@@ -2,5 +2,6 @@
 
 public record AnswerDto
 (
+    int Index,
     string Text
 );

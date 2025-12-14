@@ -20,20 +20,12 @@ public class SurveyDbContext(DbContextOptions<SurveyDbContext> options)
                 q.ToTable("Questions");
                 q.WithOwner().HasForeignKey("SurveyId");
 
-                // Propriedade fantasma
-                q.Property<int>("Id");
-                q.HasKey("Id");
-
                 q.Property(x => x.Title).IsRequired();
 
                 q.OwnsMany(x => x.Answers, a =>
                 {
                     a.ToTable("Answers");
                     a.WithOwner().HasForeignKey("QuestionId");
-
-                    // Propriedade fantasma
-                    a.Property<int>("Id");
-                    a.HasKey("Id");
 
                     a.Property(x => x.Text).IsRequired();
                 });

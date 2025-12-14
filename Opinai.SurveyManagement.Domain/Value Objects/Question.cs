@@ -1,9 +1,28 @@
 ﻿namespace Opinai.SurveyManagement.Domain;
 
-public class Question(string title)
+public class Question
 {
-    public string Title { get; set; } = title;
+    public int Index { get; } = -1;
+    public string Title { get; }
 
-    public List<Answer> Answers { get; set; } = [];
-    public int SelectedAnswer { get; set; } = -1;
+    public IReadOnlyCollection<Answer> Answers { get; }
+
+    public Question(string title, IEnumerable<Answer> answers)
+    {
+        Index = -1;
+        Title = title;
+        Answers = answers.ToList();
+    }
+
+    private Question(int index, string title, IReadOnlyCollection<Answer> answers)
+    {
+        Index = index;
+        Title = title;
+        
+        Answers = answers.Select((answer, index) 
+            => answer.WithIndex(index)).ToList();
+    }
+
+    public Question WithIndex(int index)
+        => new(Index, Title, Answers);
 }
