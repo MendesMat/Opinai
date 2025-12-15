@@ -7,6 +7,6 @@ public interface ICrudRepository<T>
     void Delete(T entity);
     Task<IReadOnlyCollection<T>> GetAllAsync();
     Task<T?> GetByIdAsync(Guid id);
-    Task<T?> GetByIdForUpdateAsync(Guid id);
+    Task<T?> GetByIdWithTrackingAsync(Guid id);
     void Update(T entity);
 }

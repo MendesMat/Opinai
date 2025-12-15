@@ -34,7 +34,7 @@ public class SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitO
 
     public async Task<bool> UpdateAsync(Guid id, UpdateSurveyDto dto)
     {
-        var entity = await _repository.GetByIdForUpdateAsync(id);
+        var entity = await _repository.GetByIdWithTrackingAsync(id);
         if (entity is null) return false;
 
         entity.UpdateMetadata(dto.Title, dto.Description, dto.Status);
@@ -56,7 +56,7 @@ public class SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitO
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var entity = await _repository.GetByIdAsync(id);
+        var entity = await _repository.GetByIdWithTrackingAsync(id);
         if (entity is null) return false;
 
         _repository.Delete(entity);

@@ -18,7 +18,7 @@ public class CrudRepositoryBase<T>(DbContext context)
     public async Task<IReadOnlyCollection<T>> GetAllAsync()
         => await _set.AsNoTracking().ToListAsync();
 
-    public async Task<T?> GetByIdForUpdateAsync(Guid id)
+    public async Task<T?> GetByIdWithTrackingAsync(Guid id)
         => await _set.FirstOrDefaultAsync(e => e.Id == id);
 
     public void Update(T entity)
