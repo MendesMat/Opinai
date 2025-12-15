@@ -1,4 +1,5 @@
 ﻿using Opinai.ResponseManagement.Application.Dtos;
+using Opinai.ResponseManagement.Application.Integration;
 using Opinai.ResponseManagement.Application.Interfaces;
 using Opinai.ResponseManagement.Domain.Entities;
 using Opinai.Shared.Application.Interfaces;
@@ -19,9 +20,25 @@ public class SurveyResponseService(
                 answer.AnswerIndex
             );
 
-            await repository.AddAsync(response);
+            await repository.AddRangeAsync(response);
         }
 
         await unitOfWork.SaveChangesAsync();
+    }
+
+    public async Task<SurveyResultsPayload> BuildSurveyResultsAsync(Guid surveyId)
+    {
+        var agregationCollection = await repository.GetAggregatedBySurveyAsync(surveyId);
+
+        var questions = agregationCollection.GroupBy(r => r.QuestionIndex)
+            .Select(q => new QuestionResultsPayload(
+                q.Key,
+                q.Select( a => new AnswerResultsPayload(
+                    a.AnswerIndex,
+                    a.Count
+                )).ToList()
+            )).ToList();
+
+        return new SurveyResultsPayload(surveyId, questions);
     }
 }

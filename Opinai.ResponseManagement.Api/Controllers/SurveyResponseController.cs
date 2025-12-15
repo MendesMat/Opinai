@@ -10,9 +10,9 @@ public class SurveyResponseController(
     ISurveyResponseService service) : ControllerBase
 {
     [HttpPost]
-    public IActionResult CreateResponse([FromBody] SurveyResponseDto dto)
+    public async Task<IActionResult> CreateResponse([FromBody] SurveyResponseDto dto)
     {
-        service.AddSurveyResponseAsync(dto);
+        await service.AddSurveyResponseAsync(dto);
         return NoContent();
     }
 }

@@ -5,7 +5,7 @@ namespace Opinai.ResponseManagement.Application.Interfaces;
 
 public interface ISurveyResponseRepository
 {
-    Task AddAsync(SurveyResponse entity);
+    Task AddRangeAsync(SurveyResponse entity);
     Task<IReadOnlyCollection<SurveyResponseAggregation>>
         GetAggregatedBySurveyAsync(Guid surveyId);
 }
