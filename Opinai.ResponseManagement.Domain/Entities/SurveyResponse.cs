@@ -1,12 +1,19 @@
 ﻿namespace Opinai.ResponseManagement.Domain.Entities;
 
-internal class SurveyResponse(
-    string surveyId, 
-    int questionId, 
-    int answerId)
+public class SurveyResponse
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public string SurveyId { get; set; } = surveyId;
-    public int QuestionId { get; set; } = questionId;
-    public int AnswerId { get; set; } = answerId;
+    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid SurveyId { get; private set; }
+    public int QuestionIndex { get; private set; }
+    public int AnswerIndex { get; private set; }
+
+    public SurveyResponse(
+        Guid surveyId, 
+        int questionIndex, 
+        int answerIndex)
+    {
+        SurveyId = surveyId;
+        QuestionIndex = questionIndex;
+        AnswerIndex = answerIndex;
+    }
 }

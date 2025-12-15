@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Opinai",
+    "Projects": [
+      {
+        "Path": "Opinai.SurveyManagement.Api\\Opinai.SurveyManagement.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Opinai.ResponseManagement.Api\\Opinai.ResponseManagement.Api.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

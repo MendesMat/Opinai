@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Opinai.ResponseManagement.Domain\Opinai.ResponseManagement.Domain.csproj" />
+    <ProjectReference Include="..\Opinai.Shared.Application\Opinai.Shared.Application.csproj" />
+  </ItemGroup>
+
 </Project>

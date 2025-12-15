@@ -4,30 +4,30 @@
     "http": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5113/swagger",
+      "launchUrl": "http://localhost:5123/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5113"
+      "applicationUrl": "http://localhost:5123"
     },
     "https": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7219/swagger",
+      "launchUrl": "https://localhost:7229/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7219"
+      "applicationUrl": "https://localhost:7229"
     },
     "Container (.NET SDK)": {
       "commandName": "SdkContainer",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
-        "ASPNETCORE_HTTPS_PORTS": "8081",
-        "ASPNETCORE_HTTP_PORTS": "8080"
+        "ASPNETCORE_HTTPS_PORTS": "8181",
+        "ASPNETCORE_HTTP_PORTS": "8180"
       },
       "publishAllPorts": true,
       "useSSL": true

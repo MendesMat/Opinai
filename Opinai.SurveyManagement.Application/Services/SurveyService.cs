@@ -8,10 +8,13 @@ using Opinai.SurveyManagement.Domain.Entities;
 
 namespace Opinai.SurveyManagement.Application.Services;
 
-public class SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitOfWork, IMapper mapper)
-    : QueryServiceBase<Survey, SurveyDto>(repository, unitOfWork, mapper),
+public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
     ISurveyService
 {
+    public SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitOfWork, IMapper mapper) 
+        : base(repository, unitOfWork, mapper)
+    { }
+
     public async Task<Guid> CreateAsync(CreateSurveyDto dto)
     {
         var entity = new Survey(dto.Title, dto.Description);
