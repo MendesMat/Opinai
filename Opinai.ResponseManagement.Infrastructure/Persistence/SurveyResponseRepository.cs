@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Opinai.ResponseManagement.Application.Dtos;
 using Opinai.ResponseManagement.Application.Interfaces;
+using Opinai.ResponseManagement.Application.ReadModels;
 using Opinai.ResponseManagement.Domain.Entities;
 
 namespace Opinai.ResponseManagement.Infrastructure.Persistence;

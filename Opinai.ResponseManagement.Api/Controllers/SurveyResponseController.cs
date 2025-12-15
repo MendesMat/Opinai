@@ -12,7 +12,7 @@ public class SurveyResponseController(
     [HttpPost]
     public IActionResult CreateResponse([FromBody] SurveyResponseDto dto)
     {
-        service.AddSurveyResponseAsync(dto.SurveyId, dto.QuestionId, dto.AnswerId);
+        service.AddSurveyResponseAsync(dto);
         return NoContent();
     }
 }

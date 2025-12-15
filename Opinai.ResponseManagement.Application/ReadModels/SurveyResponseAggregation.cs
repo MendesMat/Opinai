@@ -1,4 +1,4 @@
-﻿namespace Opinai.ResponseManagement.Application.Dtos;
+﻿namespace Opinai.ResponseManagement.Application.ReadModels;
 
 public record SurveyResponseAggregation(
     int QuestionIndex,

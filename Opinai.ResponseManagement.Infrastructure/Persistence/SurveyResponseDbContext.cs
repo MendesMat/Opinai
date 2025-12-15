@@ -25,4 +25,3 @@ public class SurveyResponseDbContext(DbContextOptions<SurveyResponseDbContext> o
         });
     }
 }
-

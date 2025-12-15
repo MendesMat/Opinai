@@ -2,6 +2,5 @@
 
 public record SurveyResponseDto(
     Guid SurveyId,
-    int QuestionId,
-    int AnswerId
+    IReadOnlyCollection<QuestionAnswerDto> Answers
 );

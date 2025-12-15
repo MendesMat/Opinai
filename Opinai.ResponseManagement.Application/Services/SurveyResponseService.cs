@@ -1,4 +1,5 @@
-﻿using Opinai.ResponseManagement.Application.Interfaces;
+﻿using Opinai.ResponseManagement.Application.Dtos;
+using Opinai.ResponseManagement.Application.Interfaces;
 using Opinai.ResponseManagement.Domain.Entities;
 using Opinai.Shared.Application.Interfaces;
 
@@ -8,18 +9,19 @@ public class SurveyResponseService(
     ISurveyResponseRepository repository,
     IUnitOfWork unitOfWork) : ISurveyResponseService
 {
-    public async Task AddSurveyResponseAsync(
-        Guid surveyId,
-        int questionIndex,
-        int answerIndex)
+    public async Task AddSurveyResponseAsync(SurveyResponseDto dto)
     {
-        var response = new SurveyResponse(
-            surveyId,
-            questionIndex,
-            answerIndex
-        );
+        foreach (var answer in dto.Answers)
+        {
+            var response = new SurveyResponse(
+                dto.SurveyId,
+                answer.QuestionIndex,
+                answer.AnswerIndex
+            );
 
-        await repository.AddAsync(response);
+            await repository.AddAsync(response);
+        }
+
         await unitOfWork.SaveChangesAsync();
     }
 }
