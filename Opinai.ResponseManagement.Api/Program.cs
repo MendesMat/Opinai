@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Opinai.ResponseManagement.Application.Consumers;
 using Opinai.ResponseManagement.Application.Interfaces;
 using Opinai.ResponseManagement.Application.Services;
 using Opinai.ResponseManagement.Infrastructure.Persistence;
@@ -14,6 +15,7 @@ builder.Services.AddScoped<DbContext>(sp =>
     sp.GetRequiredService<SurveyResponseDbContext>());
 
 builder.Services.AddScoped<ISurveyResponseRepository, SurveyResponseRepository>();
+builder.Services.AddScoped<ISurveyAvailabilityService, SurveyAvailabilityService>();
 builder.Services.AddScoped<ISurveyResponseService, SurveyResponseService>();
 
 // Entity Framework
@@ -37,6 +39,9 @@ builder.Services.AddSwaggerGen(c =>
 // MassTransmit
 builder.Services.AddMassTransit(c =>
 {
+    c.AddConsumer<SurveyPublishedConsumer>();
+    c.AddConsumer<SurveyFinishedConsumer>();
+
     c.UsingInMemory((context, config) =>
     {
         config.ConfigureEndpoints(context);

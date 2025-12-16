@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Opinai.Messaging.Contracts\Opinai.Messaging.Contracts.csproj" />
+    <ProjectReference Include="..\Opinai.ResponseManagement.Application\Opinai.ResponseManagement.Application.csproj" />
     <ProjectReference Include="..\Opinai.SurveyAnalytics.Domain\Opinai.SurveyAnalytics.Domain.csproj" />
   </ItemGroup>
 

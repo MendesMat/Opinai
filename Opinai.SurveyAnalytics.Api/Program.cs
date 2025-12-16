@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.OpenApi.Models;
+using Opinai.SurveyAnalytics.Application.Consumers;
 using Opinai.SurveyAnalytics.Application.Interfaces;
 using Opinai.SurveyAnalytics.Application.Services;
 using Opinai.SurveyAnalytics.Domain.Services;
@@ -29,6 +30,8 @@ builder.Services.AddSwaggerGen(c =>
 // MassTransmit
 builder.Services.AddMassTransit(c =>
 {
+    c.AddConsumer<SurveyResultsConsumer>();
+
     c.UsingInMemory((context, config) =>
     {
         config.ConfigureEndpoints(context);

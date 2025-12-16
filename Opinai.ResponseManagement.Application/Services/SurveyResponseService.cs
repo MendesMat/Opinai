@@ -7,11 +7,15 @@ using Opinai.Shared.Application.Interfaces;
 namespace Opinai.ResponseManagement.Application.Services;
 
 public class SurveyResponseService(
+    ISurveyAvailabilityService availabilityService,
     ISurveyResponseRepository repository,
     IUnitOfWork unitOfWork) : ISurveyResponseService
 {
     public async Task AddSurveyResponseAsync(SurveyResponseDto dto)
     {
+        if (!availabilityService.IsSurveyOpen(dto.SurveyId))
+            throw new InvalidOperationException("Survey não publicada.");
+
         foreach (var answer in dto.Answers)
         {
             var response = new SurveyResponse(
@@ -28,9 +32,9 @@ public class SurveyResponseService(
 
     public async Task<SurveyResultsPayload> BuildSurveyResultsAsync(Guid surveyId)
     {
-        var agregationCollection = await repository.GetAggregatedBySurveyAsync(surveyId);
+        var aggregation = await repository.GetAggregatedBySurveyAsync(surveyId);
 
-        var questions = agregationCollection.GroupBy(r => r.QuestionIndex)
+        var questions = aggregation.GroupBy(r => r.QuestionIndex)
             .Select(q => new QuestionResultsPayload(
                 q.Key,
                 q.Select( a => new AnswerResultsPayload(
