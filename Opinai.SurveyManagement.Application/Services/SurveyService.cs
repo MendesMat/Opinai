@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MassTransit;
+using Opinai.Messaging.Contracts.Events;
 using Opinai.Shared.Application.Interfaces;
 using Opinai.Shared.Application.Services;
 using Opinai.SurveyManagement.Application.Dtos.Survey;
@@ -12,9 +14,17 @@ namespace Opinai.SurveyManagement.Application.Services;
 public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
     ISurveyService
 {
-    public SurveyService(ICrudRepository<Survey> repository, IUnitOfWork unitOfWork, IMapper mapper) 
+    private readonly IPublishEndpoint _publishEndpoint;
+
+    public SurveyService(
+        ICrudRepository<Survey> repository,
+        IUnitOfWork unitOfWork,
+        IMapper mapper,
+        IPublishEndpoint publishEndpoint)
         : base(repository, unitOfWork, mapper)
-    { }
+    { 
+        _publishEndpoint = publishEndpoint;
+    }
 
     public async Task<Guid> CreateAsync(CreateSurveyDto dto)
     {
@@ -80,6 +90,10 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
         entity.PublishSurvey();
         
         await _unitOfWork.SaveChangesAsync();
+        
+        await _publishEndpoint.Publish(
+            new SurveyPublished(entity.Id));
+
         return SurveyActionResult.Success;
     }
     
@@ -94,6 +108,10 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
         entity.FinishSurvey();
         
         await _unitOfWork.SaveChangesAsync();
+
+        await _publishEndpoint.Publish(
+            new SurveyFinished(entity.Id));
+
         return SurveyActionResult.Success;
     }
 }

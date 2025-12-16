@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Opinai.Shared.Application.Interfaces;
 using Opinai.Shared.Infrastructure.Persistence;
@@ -39,6 +40,15 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Survey API",
         Version = "v1",
         Description = "API para gerenciamento de pesquisas."
+    });
+});
+
+// MassTransmit
+builder.Services.AddMassTransit(c =>
+{
+    c.UsingInMemory((context, config) =>
+    {
+        config.ConfigureEndpoints(context);
     });
 });
 

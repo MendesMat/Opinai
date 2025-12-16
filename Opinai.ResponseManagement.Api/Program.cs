@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Opinai.ResponseManagement.Application.Interfaces;
 using Opinai.ResponseManagement.Application.Services;
 using Opinai.ResponseManagement.Infrastructure.Persistence;
@@ -32,6 +31,15 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Response Management API",
         Version = "v1",
         Description = "API para coletar respostas de pesquisas."
+    });
+});
+
+// MassTransmit
+builder.Services.AddMassTransit(c =>
+{
+    c.UsingInMemory((context, config) =>
+    {
+        config.ConfigureEndpoints(context);
     });
 });
 

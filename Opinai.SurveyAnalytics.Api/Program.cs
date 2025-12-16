@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using MassTransit;
+using Microsoft.OpenApi.Models;
 using Opinai.SurveyAnalytics.Application.Interfaces;
 using Opinai.SurveyAnalytics.Application.Services;
 using Opinai.SurveyAnalytics.Domain.Services;
@@ -22,6 +23,15 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Analytics API",
         Version = "v1",
         Description = "API para análise de dados de pesquisas."
+    });
+});
+
+// MassTransmit
+builder.Services.AddMassTransit(c =>
+{
+    c.UsingInMemory((context, config) =>
+    {
+        config.ConfigureEndpoints(context);
     });
 });
 

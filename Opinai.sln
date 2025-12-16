@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Api"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.Shared.Infrastructure", "Opinai.Shared.Infrastructure\Opinai.Shared.Infrastructure.csproj", "{9CEF29F3-35C0-077B-D3D4-BD9360518245}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{427F1DBD-3D1D-476C-AC79-4CA78894B1AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.Messaging.Contracts", "Opinai.Messaging.Contracts\Opinai.Messaging.Contracts.csproj", "{612D13F3-70AE-4AB8-93E4-47D8EBAA63C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +107,10 @@ Global
 		{9CEF29F3-35C0-077B-D3D4-BD9360518245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CEF29F3-35C0-077B-D3D4-BD9360518245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CEF29F3-35C0-077B-D3D4-BD9360518245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{612D13F3-70AE-4AB8-93E4-47D8EBAA63C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612D13F3-70AE-4AB8-93E4-47D8EBAA63C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612D13F3-70AE-4AB8-93E4-47D8EBAA63C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612D13F3-70AE-4AB8-93E4-47D8EBAA63C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +134,8 @@ Global
 		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
 		{14CFBB7F-3278-40FB-B928-B17283229C9C} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
 		{9CEF29F3-35C0-077B-D3D4-BD9360518245} = {AE400423-1E5F-4735-9CF0-6548830B6D32}
+		{427F1DBD-3D1D-476C-AC79-4CA78894B1AD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{612D13F3-70AE-4AB8-93E4-47D8EBAA63C4} = {427F1DBD-3D1D-476C-AC79-4CA78894B1AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EFD2C26-50CF-4565-A3F3-EF2C988030DD}

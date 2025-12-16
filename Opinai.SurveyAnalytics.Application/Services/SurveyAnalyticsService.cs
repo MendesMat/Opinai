@@ -13,9 +13,11 @@ public class SurveyAnalyticsService(
     {
         var input = new SurveyAnalyticsInput(
             payload.SurveyId,
+            
             payload.Questions.Select(q =>
                 new QuestionAnalyticsInput(
                     q.QuestionIndex,
+                    
                     q.Answers.Select(a =>
                         new AnswerAnalyticsInput(
                             a.AnswerIndex,
