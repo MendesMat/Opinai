@@ -2,6 +2,7 @@
 using Opinai.Shared.Application.Interfaces;
 using Opinai.Shared.Application.Services;
 using Opinai.SurveyManagement.Application.Dtos.Survey;
+using Opinai.SurveyManagement.Application.Enums;
 using Opinai.SurveyManagement.Application.Interface;
 using Opinai.SurveyManagement.Domain;
 using Opinai.SurveyManagement.Domain.Entities;
@@ -40,7 +41,7 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
         var entity = await _repository.GetByIdWithTrackingAsync(id);
         if (entity is null) return false;
 
-        entity.UpdateMetadata(dto.Title, dto.Description, dto.Status);
+        entity.UpdateMetadata(dto.Title, dto.Description);
 
         var questions = dto.Questions.Select(question => 
             new Question(
@@ -66,5 +67,33 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
         await _unitOfWork.SaveChangesAsync();
 
         return true;
+    }
+
+    public async Task<SurveyActionResult> PublishSurveyAsync(Guid id)
+    {
+        var entity = await _repository.GetByIdWithTrackingAsync(id);
+        if (entity is null) return SurveyActionResult.NotFound;
+
+        if(!entity.CanPublish())
+            return SurveyActionResult.InvalidState;
+
+        entity.PublishSurvey();
+        
+        await _unitOfWork.SaveChangesAsync();
+        return SurveyActionResult.Success;
+    }
+    
+    public async Task<SurveyActionResult> FinishSurveyAsync(Guid id)
+    {
+        var entity = await _repository.GetByIdWithTrackingAsync(id);
+        if (entity is null) return SurveyActionResult.NotFound;
+
+        if (!entity.CanFinish())
+            return SurveyActionResult.InvalidState;
+
+        entity.FinishSurvey();
+        
+        await _unitOfWork.SaveChangesAsync();
+        return SurveyActionResult.Success;
     }
 }

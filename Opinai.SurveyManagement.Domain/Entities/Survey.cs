@@ -19,16 +19,21 @@ public class Survey : IEntity
         Description = description;
     }
 
-    public void UpdateMetadata(string? title, string? description, Status? status)
+    public bool CanEdit() => Status == Status.Draft;
+    public bool CanPublish() => Status == Status.Draft;
+    public bool CanFinish() => Status == Status.Published;
+
+    public void UpdateMetadata(string? title, string? description)
     {
+        if(!CanEdit())
+            throw new InvalidOperationException
+                ("Apenas pesquisas em rascunho podem ser alteradas.");
+
         if (!string.IsNullOrWhiteSpace(title))
             Title = title;
 
         if (!string.IsNullOrWhiteSpace(description))
             Description = description;
-
-        if (status.HasValue)
-            Status = status.Value;
     }
 
     public void ReplaceQuestions(IEnumerable<Question> questions)
@@ -43,5 +48,23 @@ public class Survey : IEntity
 
         foreach (var question in questions)
             yield return question.WithIndex(questionIndex++);
+    }
+
+    public void PublishSurvey()
+    {
+        if(!CanPublish())
+            throw new InvalidOperationException(
+                "Apenas pesquisas em rascunho podem ser publicadas.");
+
+        Status = Status.Published;
+    }
+
+    public void FinishSurvey()
+    {
+        if(!CanFinish())
+            throw new InvalidOperationException
+                ("Apenas pesquisas publicadas podem ser concluídas.");
+
+        Status = Status.Finished;
     }
 }
