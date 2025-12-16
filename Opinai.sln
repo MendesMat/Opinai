@@ -33,6 +33,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.ResponseManagement.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.ResponseManagement.Infrastructure", "Opinai.ResponseManagement.Infrastructure\Opinai.ResponseManagement.Infrastructure.csproj", "{B6415BBB-18BD-4B0D-A91C-ED80B87ED9D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SurveyAnalytics", "SurveyAnalytics", "{3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Domain", "Opinai.SurveyAnalytics.Domain\Opinai.SurveyAnalytics.Domain.csproj", "{E8A14DAE-067F-4486-83D7-D00E536A78C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Application", "Opinai.SurveyAnalytics.Application\Opinai.SurveyAnalytics.Application.csproj", "{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Api", "Opinai.SurveyAnalytics.Api\Opinai.SurveyAnalytics.Api.csproj", "{14CFBB7F-3278-40FB-B928-B17283229C9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Infrastructure", "Opinai.SurveyAnalytics.Infrastructure\Opinai.SurveyAnalytics.Infrastructure.csproj", "{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +93,22 @@ Global
 		{B6415BBB-18BD-4B0D-A91C-ED80B87ED9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6415BBB-18BD-4B0D-A91C-ED80B87ED9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6415BBB-18BD-4B0D-A91C-ED80B87ED9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A14DAE-067F-4486-83D7-D00E536A78C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A14DAE-067F-4486-83D7-D00E536A78C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A14DAE-067F-4486-83D7-D00E536A78C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A14DAE-067F-4486-83D7-D00E536A78C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +128,11 @@ Global
 		{17DD4112-2E92-4562-9187-B7EF293A3652} = {D22DAA67-4AB8-40CF-96B9-A62AF88FC056}
 		{F6E6CD8E-7BFD-4E55-B055-87D0800257CF} = {D22DAA67-4AB8-40CF-96B9-A62AF88FC056}
 		{B6415BBB-18BD-4B0D-A91C-ED80B87ED9D5} = {D22DAA67-4AB8-40CF-96B9-A62AF88FC056}
+		{3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E8A14DAE-067F-4486-83D7-D00E536A78C1} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
+		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
+		{14CFBB7F-3278-40FB-B928-B17283229C9C} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
+		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EFD2C26-50CF-4565-A3F3-EF2C988030DD}
