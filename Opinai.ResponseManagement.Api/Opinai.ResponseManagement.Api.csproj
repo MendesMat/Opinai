@@ -16,7 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Opinai.ResponseManagement.Application\Opinai.ResponseManagement.Application.csproj" />
     <ProjectReference Include="..\Opinai.ResponseManagement.Infrastructure\Opinai.ResponseManagement.Infrastructure.csproj" />
-    <ProjectReference Include="..\Opinai.Shared\Opinai.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Opinai.Shared.Infrastructure\Opinai.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

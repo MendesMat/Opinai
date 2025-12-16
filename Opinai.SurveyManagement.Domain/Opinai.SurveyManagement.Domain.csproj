@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Opinai.Shared\Opinai.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Opinai.Shared.Infrastructure\Opinai.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

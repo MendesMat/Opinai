@@ -36,7 +36,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Pesquisas API",
+        Title = "Survey API",
         Version = "v1",
         Description = "API para gerenciamento de pesquisas."
     });
