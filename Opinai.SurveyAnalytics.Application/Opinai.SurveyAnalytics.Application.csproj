@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Opinai.SurveyAnalytics.Domain\Opinai.SurveyAnalytics.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

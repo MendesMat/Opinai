@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Api", "Opinai.SurveyAnalytics.Api\Opinai.SurveyAnalytics.Api.csproj", "{14CFBB7F-3278-40FB-B928-B17283229C9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opinai.SurveyAnalytics.Infrastructure", "Opinai.SurveyAnalytics.Infrastructure\Opinai.SurveyAnalytics.Infrastructure.csproj", "{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,10 +103,6 @@ Global
 		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14CFBB7F-3278-40FB-B928-B17283229C9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,7 +126,6 @@ Global
 		{E8A14DAE-067F-4486-83D7-D00E536A78C1} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
 		{91394EB5-95B3-4BB4-AD35-2D0FE622D8AD} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
 		{14CFBB7F-3278-40FB-B928-B17283229C9C} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
-		{AF5D9773-0D8F-408F-8DCE-EDD1E37AFE5A} = {3A39AE38-4D94-47BB-B1E6-7BA5F291C7FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EFD2C26-50CF-4565-A3F3-EF2C988030DD}

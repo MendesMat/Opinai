@@ -11,11 +11,11 @@ public class SurveyAnalyticsCalculator
         {
             var total = q.Answers.Sum(a => a.Count);
 
-            var answers = q.Answers.Select(a => 
+            var answers = q.Answers.Select(a =>
                 new AnswerAnalyticsResult(
                     a.AnswerIndex,
                     a.Count,
-                    total == 0 ? 
+                    total == 0 ?
                         0 : Math.Round((decimal)a.Count / total * 100, 2)
                 )
             ).ToList();

@@ -9,8 +9,6 @@ namespace Opinai.SurveyAnalytics.Application.Services;
 public class SurveyAnalyticsService(
     SurveyAnalyticsCalculator calculator) : ISurveyAnalyticsService
 {
-    private readonly SurveyAnalyticsCalculator _calculator = calculator;
-
     public Task<SurveyAnalyticsResult> BuildAsync(SurveyResultsPayload payload)
     {
         var input = new SurveyAnalyticsInput(
@@ -28,6 +26,6 @@ public class SurveyAnalyticsService(
             ).ToList()
         );
 
-        return Task.FromResult(_calculator.Calculate(input));
+        return Task.FromResult(calculator.Calculate(input));
     }
 }

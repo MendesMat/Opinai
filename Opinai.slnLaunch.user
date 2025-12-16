@@ -4,11 +4,18 @@
     "Projects": [
       {
         "Path": "Opinai.SurveyManagement.Api\\Opinai.SurveyManagement.Api.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "https"
       },
       {
         "Path": "Opinai.ResponseManagement.Api\\Opinai.ResponseManagement.Api.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "Opinai.SurveyAnalytics.Api\\Opinai.SurveyAnalytics.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
       }
     ]
   }
