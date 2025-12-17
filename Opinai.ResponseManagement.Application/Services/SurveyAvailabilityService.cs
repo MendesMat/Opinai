@@ -5,19 +5,14 @@ namespace Opinai.ResponseManagement.Application.Services;
 
 public class SurveyAvailabilityService : ISurveyAvailabilityService
 {
-    private readonly ConcurrentDictionary<Guid, bool> _surveys = new();
+    private readonly ConcurrentDictionary<Guid, byte> _publishedSurveys = new();
 
     public void OpenSurvey(Guid surveyId)
-        => _surveys[surveyId] = true;
+        => _publishedSurveys.TryAdd(surveyId, 0);
 
     public void CloseSurvey(Guid surveyId)
-        => _surveys[surveyId] = false;
+        => _publishedSurveys.TryRemove(surveyId, out _);
 
-    public bool IsSurveyOpen(Guid surveyId)
-    {
-        if (!_surveys.TryGetValue(surveyId, out var isOpen))
-            return false;
-
-        return isOpen;
-    }
+    public bool IsSurveyPublished(Guid surveyId) 
+        => _publishedSurveys.ContainsKey(surveyId);
 }

@@ -1,4 +1,5 @@
 ﻿using Opinai.ResponseManagement.Application.Dtos;
+using Opinai.ResponseManagement.Application.Enums;
 using Opinai.ResponseManagement.Application.Integration;
 using Opinai.ResponseManagement.Application.Interfaces;
 using Opinai.ResponseManagement.Domain.Entities;
@@ -11,10 +12,10 @@ public class SurveyResponseService(
     ISurveyResponseRepository repository,
     IUnitOfWork unitOfWork) : ISurveyResponseService
 {
-    public async Task AddSurveyResponseAsync(SurveyResponseDto dto)
+    public async Task<SurveyResponseResult> AddSurveyResponseAsync(SurveyResponseDto dto)
     {
-        if (!availabilityService.IsSurveyOpen(dto.SurveyId))
-            throw new InvalidOperationException("Survey não publicada.");
+        if (!availabilityService.IsSurveyPublished(dto.SurveyId))
+            return SurveyResponseResult.SurveyNotPublished;
 
         foreach (var answer in dto.Answers)
         {
@@ -28,6 +29,7 @@ public class SurveyResponseService(
         }
 
         await unitOfWork.SaveChangesAsync();
+        return SurveyResponseResult.Success;
     }
 
     public async Task<SurveyResultsPayload> BuildSurveyResultsAsync(Guid surveyId)
