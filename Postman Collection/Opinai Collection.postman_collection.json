@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "b4a47e6f-a600-4ee0-8b1d-0dad0f17ae66",
+		"name": "Opinai Collection",
+		"description": "Collection completa para testar todos os endpoints da solução Opinai (SurveyManagement, ResponseManagement e SurveyAnalytics)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37693084",
+		"_collection_link": "https://www.postman.com/restless-satellite-323670/workspace/opinai/collection/37693084-b4a47e6f-a600-4ee0-8b1d-0dad0f17ae66?action=share&source=collection_link&creator=37693084"
+	},
+	"item": [
+		{
+			"name": "SurveyManagement API",
+			"item": [
+				{
+					"name": "Create Survey",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Pesquisa de satisfação governamental\",\n    \"description\": \"Pesquisa para entender o nível de satisfação da população com o governo atual.\",\n    \"questions\": [\n    {\n        \"title\": \"Você está satisfeito com o governo atual?\",\n        \"answers\": [\n            { \"text\": \"Satisfeito\" },\n            { \"text\": \"Neutro\" },\n            { \"text\": \"Insatisfeito\" },\n            { \"text\": \"Não sei opinar\" }\n        ]\n    },\n    {\n        \"title\": \"Qual área do governo você considera mais importante para melhoria?\",\n        \"answers\": [\n            { \"text\": \"Saúde\" },\n            { \"text\": \"Educação\" },\n            { \"text\": \"Segurança Pública\" },\n            { \"text\": \"Economia e Emprego\" },\n            { \"text\": \"Infraestrutura e Transporte\" },\n            { \"text\": \"Não sei opinar\" }\n        ]\n    }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7219/api/survey",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey"
+							]
+						},
+						"description": "Cria uma nova pesquisa com título, descrição, questões e respostas"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Survey by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7219/api/survey/{{surveyId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey",
+								"{{surveyId}}"
+							]
+						},
+						"description": "Retorna uma pesquisa específica por ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Surveys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7219/api/survey/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey",
+								""
+							]
+						},
+						"description": "Retorna todas as pesquisas cadastradas"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Survey",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Pesquisa de satisfação governamental\",\n    \"description\": \"Pesquisa para entender o nível de satisfação da população com o governo atual.\",\n    \"questions\": [\n    {\n        \"title\": \"Você está satisfeito com o governo atual?\",\n        \"answers\": [\n            { \"text\": \"Satisfeito\" },\n            { \"text\": \"Neutro\" },\n            { \"text\": \"Insatisfeito\" },\n            { \"text\": \"Não sei opinar\" }\n        ]\n    },\n    {\n        \"title\": \"Qual área do governo você considera mais importante para melhoria?\",\n        \"answers\": [\n            { \"text\": \"Saúde\" },\n            { \"text\": \"Educação\" },\n            { \"text\": \"Segurança Pública\" },\n            { \"text\": \"Economia e Emprego\" },\n            { \"text\": \"Infraestrutura e Transporte\" },\n            { \"text\": \"Não sei opinar\" }\n        ]\n    },\n    {\n        \"title\": \"Em relação ao governo anterior, você considera o governo atual como?\",\n        \"answers\": [\n            { \"text\": \"Melhor\" },\n            { \"text\": \"Pior\" },\n            { \"text\": \"Neutro\" },\n            { \"text\": \"Não sei opinar\" }\n        ]\n    }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7219/api/survey/{{surveyId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey",
+								"{{surveyId}}"
+							]
+						},
+						"description": "Atualiza uma pesquisa existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Survey",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7219/api/survey/{{surveyId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey",
+								"{{surveyId}}"
+							]
+						},
+						"description": "Remove uma pesquisa do sistema"
+					},
+					"response": []
+				},
+				{
+					"name": "Publish Survey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7219/api/survey/{{surveyId}}/publish",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey",
+								"{{surveyId}}",
+								"publish"
+							]
+						},
+						"description": "Publica uma pesquisa (dispara evento SurveyPublished para ResponseManagement)"
+					},
+					"response": []
+				},
+				{
+					"name": "Finish Survey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7219/api/survey/{{surveyId}}/finish",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7219",
+							"path": [
+								"api",
+								"survey",
+								"{{surveyId}}",
+								"finish"
+							]
+						},
+						"description": "Finaliza uma pesquisa (dispara evento SurveyFinished para ResponseManagement)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gerenciamento de pesquisas (criação, atualização, publicação, finalização)"
+		},
+		{
+			"name": "ResponseManagement API",
+			"item": [
+				{
+					"name": "Submit Survey Response",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"surveyId\": \"1cb58bc4-2ea2-4c91-a135-0f3705721327\",\n    \"answers\": [\n        {\n            \"questionIndex\": 0,\n            \"answerIndex\": 0\n        },\n        {\n            \"questionId\": 1,\n            \"answerId\": 2\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7229/api/surveyresponse",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7229",
+							"path": [
+								"api",
+								"surveyresponse"
+							]
+						},
+						"description": "Submete uma resposta completa para uma pesquisa publicada"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gerenciamento de respostas de pesquisas"
+		},
+		{
+			"name": "SurveyAnalytics API",
+			"item": [
+				{
+					"name": "Submit Survey Analytics",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"surveyId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"questions\": [\r\n    {\r\n            \"questionIndex\": 0,\r\n            \"answers\": [\r\n            {\r\n                \"answerIndex\": 0,\r\n                \"count\": 0\r\n            }\r\n        ]\r\n    }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7239/api/surveyanalytics/{{surveyId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7239",
+							"path": [
+								"api",
+								"surveyanalytics",
+								"{{surveyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para consulta de análises e estatísticas de pesquisas"
+		}
+	],
+	"variable": [
+		{
+			"key": "surveyId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "questionId1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "questionId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "answerId1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "answerId2",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
