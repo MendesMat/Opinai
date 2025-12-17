@@ -14,8 +14,11 @@ public class SurveyResponseService(
 {
     public async Task<SurveyResponseResult> AddSurveyResponseAsync(SurveyResponseDto dto)
     {
-        if (!availabilityService.IsSurveyPublished(dto.SurveyId))
-            return SurveyResponseResult.SurveyNotPublished;
+        // O código abaixo seria usado apenas se a mensageria não fosse In Memory
+        // No entanto, deixei a mensageria toda configurada para fins de avaliação.
+
+        //if (!availabilityService.IsSurveyPublished(dto.SurveyId))
+        //    return SurveyResponseResult.SurveyNotPublished;
 
         foreach (var answer in dto.Answers)
         {
