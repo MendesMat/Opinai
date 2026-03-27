@@ -39,23 +39,27 @@ O **Opinai** é uma solução de questionários estruturada como **três microse
 
 ```
 src/
-├── shared/                    # Abstrações e implementações reutilizáveis
+├── shared/ # Abstrações e implementações reutilizáveis
 │   ├── Opinai.Shared.Application/
 │   ├── Opinai.Shared.Infrastructure/
 │   └── Opinai.Shared.Api/
-├── messaging/                 # Contratos de integração centralizados
+│
+├── messaging/ # Contratos de integração centralizados
 │   └── Opinai.Messaging.Contracts/
-├── survey-management/         # Microserviço de gerenciamento de pesquisas
+|
+├── survey-management/ # Microserviço de gerenciamento de pesquisas
 │   ├── Opinai.SurveyManagement.Api/
 │   ├── Opinai.SurveyManagement.Application/
 │   ├── Opinai.SurveyManagement.Domain/
 │   └── Opinai.SurveyManagement.Infrastructure/
-├── response-management/       # Microserviço de coleta de respostas
+|
+├── response-management/ # Microserviço de coleta de respostas
 │   ├── Opinai.ResponseManagement.Api/
 │   ├── Opinai.ResponseManagement.Application/
 │   ├── Opinai.ResponseManagement.Domain/
 │   └── Opinai.ResponseManagement.Infrastructure/
-└── survey-analytics/          # Microserviço de análise de resultados
+|
+└── survey-analytics/ # Microserviço de análise de resultados
     ├── Opinai.SurveyAnalytics.Api/
     ├── Opinai.SurveyAnalytics.Application/
     ├── Opinai.SurveyAnalytics.Domain/
