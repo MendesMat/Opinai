@@ -12,7 +12,7 @@ O **Opinai** é uma solução de questionários estruturada como **três microse
 ┌─────────────────────────┐     SurveyPublished      ┌──────────────────────────────┐
 │   SurveyManagement      │ ───────────────────────► │    ResponseManagement        │
 │   (Gerencia pesquisas)  │     SurveyFinished       │    (Coleta respostas)        │
-└─────────────────────────┘ ───────────────────────► └──────────────┬───────────────┘
+└─────────────────────────┘ ───────────────────────► └───────────────┬──────────────┘
                                                                      │ SurveyResultsAggregated
                                                                      ▼
                                                       ┌──────────────────────────────┐
