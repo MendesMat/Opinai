@@ -6,11 +6,12 @@ using Opinai.SurveyAnalytics.Domain.Services;
 
 namespace Opinai.SurveyAnalytics.Application.Services;
 
-public class SurveyAnalyticsService(
-    SurveyAnalyticsCalculator calculator) : ISurveyAnalyticsService
+public class SurveyAnalyticsService : ISurveyAnalyticsService
 {
     public Task<SurveyAnalyticsResult> BuildAsync(SurveyResultsPayload payload)
     {
+        ArgumentNullException.ThrowIfNull(payload);
+
         var input = new SurveyAnalyticsInput(
             payload.SurveyId,
             
@@ -28,6 +29,6 @@ public class SurveyAnalyticsService(
             ).ToList()
         );
 
-        return Task.FromResult(calculator.Calculate(input));
+        return Task.FromResult(SurveyAnalyticsCalculator.Calculate(input));
     }
 }

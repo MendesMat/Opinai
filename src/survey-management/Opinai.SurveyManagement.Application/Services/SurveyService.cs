@@ -28,6 +28,7 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
 
     public async Task<Guid> CreateAsync(CreateSurveyDto dto)
     {
+        ArgumentNullException.ThrowIfNull(dto);
         var entity = new Survey(dto.Title, dto.Description);
 
         var questions = dto.Questions.Select(question =>
@@ -40,15 +41,16 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
 
         entity.ReplaceQuestions(questions);
 
-        await _repository.AddAsync(entity);
-        await _unitOfWork.SaveChangesAsync();
+        await Repository.AddAsync(entity).ConfigureAwait(false);
+        await UnitOfWork.SaveChangesAsync().ConfigureAwait(false);
 
         return entity.Id;
     }
 
     public async Task<bool> UpdateAsync(Guid id, UpdateSurveyDto dto)
     {
-        var entity = await _repository.GetByIdWithTrackingAsync(id);
+        ArgumentNullException.ThrowIfNull(dto);
+        var entity = await Repository.GetByIdWithTrackingAsync(id).ConfigureAwait(false);
         if (entity is null) return false;
 
         entity.UpdateMetadata(dto.Title, dto.Description);
@@ -63,25 +65,25 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
 
         entity.ReplaceQuestions(questions);
 
-        await _unitOfWork.SaveChangesAsync();
+        await UnitOfWork.SaveChangesAsync().ConfigureAwait(false);
 
         return true;
     }
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var entity = await _repository.GetByIdWithTrackingAsync(id);
+        var entity = await Repository.GetByIdWithTrackingAsync(id).ConfigureAwait(false);
         if (entity is null) return false;
 
-        _repository.Delete(entity);
-        await _unitOfWork.SaveChangesAsync();
+        Repository.Delete(entity);
+        await UnitOfWork.SaveChangesAsync().ConfigureAwait(false);
 
         return true;
     }
 
     public async Task<SurveyActionResult> PublishSurveyAsync(Guid id)
     {
-        var entity = await _repository.GetByIdWithTrackingAsync(id);
+        var entity = await Repository.GetByIdWithTrackingAsync(id).ConfigureAwait(false);
         if (entity is null) return SurveyActionResult.NotFound;
 
         if (!entity.CanPublish())
@@ -89,17 +91,17 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
 
         entity.PublishSurvey();
 
-        await _unitOfWork.SaveChangesAsync();
+        await UnitOfWork.SaveChangesAsync().ConfigureAwait(false);
 
         await _publishEndpoint.Publish(
-            new SurveyPublished(entity.Id));
+            new SurveyPublished(entity.Id)).ConfigureAwait(false);
 
         return SurveyActionResult.Success;
     }
 
     public async Task<SurveyActionResult> FinishSurveyAsync(Guid id)
     {
-        var entity = await _repository.GetByIdWithTrackingAsync(id);
+        var entity = await Repository.GetByIdWithTrackingAsync(id).ConfigureAwait(false);
         if (entity is null) return SurveyActionResult.NotFound;
 
         if (!entity.CanFinish())
@@ -107,10 +109,10 @@ public class SurveyService : QueryServiceBase<Survey, SurveyDto>,
 
         entity.FinishSurvey();
 
-        await _unitOfWork.SaveChangesAsync();
+        await UnitOfWork.SaveChangesAsync().ConfigureAwait(false);
 
         await _publishEndpoint.Publish(
-            new SurveyFinished(entity.Id));
+            new SurveyFinished(entity.Id)).ConfigureAwait(false);
 
         return SurveyActionResult.Success;
     }

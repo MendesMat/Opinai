@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Opinai.Shared.Application.Interfaces;
 
 namespace Opinai.Shared.Infrastructure.Persistence;
@@ -7,23 +7,23 @@ public class CrudRepositoryBase<T>(DbContext context)
     : ICrudRepository<T> 
     where T : class, IEntity
 {
-    protected readonly DbSet<T> _set = context.Set<T>();
+    protected DbSet<T> Set { get; } = context.Set<T>();
 
     public async Task AddAsync(T entity)
-        => await _set.AddAsync(entity);
+        => await Set.AddAsync(entity).ConfigureAwait(false);
 
     public async Task<T?> GetByIdAsync(Guid id)
-        => await _set.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+        => await Set.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id).ConfigureAwait(false);
 
     public async Task<IReadOnlyCollection<T>> GetAllAsync()
-        => await _set.AsNoTracking().ToListAsync();
+        => await Set.AsNoTracking().ToListAsync().ConfigureAwait(false);
 
     public async Task<T?> GetByIdWithTrackingAsync(Guid id)
-        => await _set.FirstOrDefaultAsync(e => e.Id == id);
+        => await Set.FirstOrDefaultAsync(e => e.Id == id).ConfigureAwait(false);
 
     public void Update(T entity)
-        => _set.Update(entity);
+        => Set.Update(entity);
 
     public void Delete(T entity)
-        => _set.Remove(entity);
+        => Set.Remove(entity);
 }

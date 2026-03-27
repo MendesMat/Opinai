@@ -14,6 +14,14 @@ public class SurveyResponseService(
 {
     public async Task<SurveyResponseResult> AddSurveyResponseAsync(SurveyResponseDto dto)
     {
+        ArgumentNullException.ThrowIfNull(dto);
+        if (dto.SurveyId == Guid.Empty)
+            throw new ArgumentException("SurveyId não pode ser vazio.");
+
+        ArgumentNullException.ThrowIfNull(dto.Answers);
+        if (!dto.Answers.Any())
+            throw new ArgumentException("A lista de respostas não pode ser vazia.");
+
         // O código abaixo seria usado apenas se a mensageria não fosse In Memory
         // No entanto, deixei a mensageria toda configurada para fins de avaliação.
 
@@ -28,16 +36,19 @@ public class SurveyResponseService(
                 answer.AnswerIndex
             );
 
-            await repository.AddRangeAsync(response);
+            await repository.AddRangeAsync(response).ConfigureAwait(false);
         }
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync().ConfigureAwait(false);
         return SurveyResponseResult.Success;
     }
 
     public async Task<SurveyResultsPayload> BuildSurveyResultsAsync(Guid surveyId)
     {
-        var aggregation = await repository.GetAggregatedBySurveyAsync(surveyId);
+        if (surveyId == Guid.Empty)
+            throw new ArgumentException("SurveyId não pode ser vazio.");
+
+        var aggregation = await repository.GetAggregatedBySurveyAsync(surveyId).ConfigureAwait(false);
 
         var questions = aggregation.GroupBy(r => r.QuestionIndex)
             .Select(q => new QuestionResultsPayload(

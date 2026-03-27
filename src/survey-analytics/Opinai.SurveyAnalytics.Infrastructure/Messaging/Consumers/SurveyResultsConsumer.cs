@@ -11,6 +11,8 @@ public class SurveyResultsConsumer(ISurveyAnalyticsService service)
     public async Task Consume(
         ConsumeContext<SurveyResultsAggregated> context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         var message = context.Message;
 
         var payload = new SurveyResultsPayload(
@@ -30,6 +32,6 @@ public class SurveyResultsConsumer(ISurveyAnalyticsService service)
             ).ToList()
         );
 
-        await service.BuildAsync(payload);
+        await service.BuildAsync(payload).ConfigureAwait(false);
     }
 }

@@ -21,7 +21,7 @@ public class Survey : IEntity
     }
 
     public bool CanEdit() => Status == Status.Draft;
-    public bool CanPublish() => Status == Status.Draft;
+    public bool CanPublish() => Status == Status.Draft && _questions.Count > 0;
     public bool CanFinish() => Status == Status.Published;
 
     public void UpdateMetadata(string? title, string? description)
@@ -39,6 +39,8 @@ public class Survey : IEntity
 
     public void ReplaceQuestions(IEnumerable<Question> questions)
     {
+        ArgumentNullException.ThrowIfNull(questions);
+
         _questions.Clear();
         _questions.AddRange(Reindex(questions));
     }

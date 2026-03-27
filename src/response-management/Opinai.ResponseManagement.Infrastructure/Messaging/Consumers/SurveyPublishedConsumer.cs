@@ -9,6 +9,8 @@ public class SurveyPublishedConsumer(ISurveyAvailabilityService surveyAvailabili
 {
     public Task Consume(ConsumeContext<SurveyPublished> context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         var surveyId = context.Message.SurveyId;
         surveyAvailabilityService.OpenSurvey(surveyId);
 

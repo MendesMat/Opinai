@@ -3,12 +3,8 @@ using Microsoft.OpenApi.Models;
 using Opinai.SurveyAnalytics.Infrastructure.Messaging.Consumers;
 using Opinai.SurveyAnalytics.Application.Interfaces;
 using Opinai.SurveyAnalytics.Application.Services;
-using Opinai.SurveyAnalytics.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Domain Services
-builder.Services.AddScoped<SurveyAnalyticsCalculator>();
 
 // Application Services
 builder.Services.AddScoped<ISurveyAnalyticsService, SurveyAnalyticsService>();

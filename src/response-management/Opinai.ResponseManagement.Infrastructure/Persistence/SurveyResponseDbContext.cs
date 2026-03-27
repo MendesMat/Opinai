@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Opinai.ResponseManagement.Domain.Entities;
 
 namespace Opinai.ResponseManagement.Infrastructure.Persistence;
@@ -8,9 +8,11 @@ public class SurveyResponseDbContext(DbContextOptions<SurveyResponseDbContext> o
 {
     public DbSet<SurveyResponse> SurveyResponses => Set<SurveyResponse>();
 
-    protected override void OnModelCreating(ModelBuilder model)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        model.Entity<SurveyResponse>(r =>
+        ArgumentNullException.ThrowIfNull(modelBuilder);
+
+        modelBuilder.Entity<SurveyResponse>(r =>
         {
             r.ToTable("SurveyResponses");
             r.HasKey(x => x.Id);

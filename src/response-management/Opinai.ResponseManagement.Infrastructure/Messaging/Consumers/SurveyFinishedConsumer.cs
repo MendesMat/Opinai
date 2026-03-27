@@ -13,11 +13,13 @@ public class SurveyFinishedConsumer(
 {
     public async Task Consume(ConsumeContext<SurveyFinished> context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         var surveyId = context.Message.SurveyId;
         surveyAvailabilityService.CloseSurvey(surveyId);
 
         var surveyResults = 
-            await surveyResponseService.BuildSurveyResultsAsync(surveyId);
+            await surveyResponseService.BuildSurveyResultsAsync(surveyId).ConfigureAwait(false);
 
         var questions = surveyResults.Questions
         .Select(q => new QuestionResult(
@@ -32,6 +34,6 @@ public class SurveyFinishedConsumer(
 
         await publishEndpoint.Publish(
             new SurveyResultsAggregated(surveyId, questions)
-        );
+        ).ConfigureAwait(false);
     }
 }
