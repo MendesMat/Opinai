@@ -11,7 +11,7 @@ O **Opinai** é uma solução de questionários estruturada como **três microse
 ```
 ┌─────────────────────────┐     SurveyPublished      ┌──────────────────────────────┐
 │   SurveyManagement      │ ───────────────────────► │    ResponseManagement        │
-│   (Gerencia pesquisas)  │     SurveyFinished        │    (Coleta respostas)        │
+│   (Gerencia pesquisas)  │     SurveyFinished       │    (Coleta respostas)        │
 └─────────────────────────┘ ───────────────────────► └──────────────┬───────────────┘
                                                                      │ SurveyResultsAggregated
                                                                      ▼
@@ -71,15 +71,15 @@ docs/
 Cada microserviço segue a mesma divisão em quatro camadas, respeitando a regra de dependência da Clean Architecture (as camadas internas nunca conhecem as externas):
 
 ```
-  ┌─────────────┐
-  │     Api     │  ← Adaptador de entrada (Controllers, DI, Middleware)
-  ├─────────────┤
-  │ Application │  ← Casos de uso, interfaces, DTOs, serviços de aplicação
-  ├─────────────┤
-  │   Domain    │  ← Entidades, Value Objects, regras de negócio puras
-  ├─────────────┤
+  ┌──────────────┐
+  │     Api      │  ← Adaptador de entrada (Controllers, DI, Middleware)
+  ├──────────────┤
+  │ Application  │  ← Casos de uso, interfaces, DTOs, serviços de aplicação
+  ├──────────────┤
+  │   Domain     │  ← Entidades, Value Objects, regras de negócio puras
+  ├──────────────┤
   │Infrastructure│ ← Persistência (EF Core), consumers de mensageria
-  └─────────────┘
+  └──────────────┘
 ```
 
 ### Api
