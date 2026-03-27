@@ -187,7 +187,7 @@ Armazena cada resposta individual com `SurveyId`, `QuestionIndex` e `AnswerIndex
 Lógica de cálculo pura, sem dependências de framework:
 - Recebe as contagens de respostas por alternativa
 - Calcula o **total de respostas** por pergunta
-- Calcula o **percentual** de cada alternativa com duas casas decimais
+- Calcula o **percentual** de cada alternativa
 - Retorna um `SurveyAnalyticsResult` com todos os dados calculados
 
 ### Endpoints principais
