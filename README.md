@@ -78,7 +78,7 @@ Cada microserviço segue a mesma divisão em quatro camadas, respeitando a regra
   ├──────────────┤
   │   Domain     │  ← Entidades, Value Objects, regras de negócio puras
   ├──────────────┤
-  │Infrastructure│ ← Persistência (EF Core), consumers de mensageria
+  │Infrastructure│  ← Persistência (EF Core), consumers de mensageria
   └──────────────┘
 ```
 
