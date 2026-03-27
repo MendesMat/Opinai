@@ -64,8 +64,9 @@ src/
     ├── Opinai.SurveyAnalytics.Application/
     ├── Opinai.SurveyAnalytics.Domain/
     └── Opinai.SurveyAnalytics.Infrastructure/
+
 docs/
-└── postman/                   # Coleção Postman para testes manuais
+└── postman/ # Coleção Postman para testes manuais
 ```
 
 ---
